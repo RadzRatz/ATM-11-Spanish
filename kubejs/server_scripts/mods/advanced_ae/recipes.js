@@ -29,14 +29,17 @@ if (Platform.isLoaded("advanced_ae")) {
       "allthemodium:vibranium_sword"
     )
 
-    allthemods.remove("advanced_ae:magnet_card")
-    allthemods.shaped(Item.of("advanced_ae:magnet_card"), ["RML", "ICI", "III"], {
-      C: "advanced_ae:quantum_upgrade_base",
-      I: "minecraft:iron_block",
-      R: "minecraft:redstone_block",
-      M: "ae2wtlib:magnet_card",
-      L: "minecraft:lapis_block"
-    })
+    if (Platform.isLoaded("ae2wtlib")) {
+      allthemods.remove("advanced_ae:magnet_card")
+      allthemods.shaped(Item.of("advanced_ae:magnet_card"), ["RML", "ICI", "III"], {
+        C: "advanced_ae:quantum_upgrade_base",
+        I: "minecraft:iron_block",
+        R: "minecraft:redstone_block",
+        M: "ae2wtlib:magnet_card",
+        L: "minecraft:lapis_block"
+      })
+    }
+
     allthemods.remove("advanced_ae:evasion_card")
     allthemods.shaped(Item.of("advanced_ae:evasion_card"), ["WPR", "PCP", "APS"], {
       P: "advanced_ae:quantum_alloy_plate",

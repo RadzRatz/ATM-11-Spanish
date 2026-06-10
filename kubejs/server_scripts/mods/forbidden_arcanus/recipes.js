@@ -4,6 +4,7 @@ if (Platform.isLoaded("forbidden_arcanus")) {
   ServerEvents.recipes((allthemods) => {
     allthemods.remove({ id: "forbidden_arcanus:smelting/dark_matter" })
     allthemods.smelting("forbidden_arcanus:dark_matter", "forbidden_arcanus:edelwood_log")
+    allthemods.remove("forbidden_arcanus:apply_modifier/eternal")
   })
 }
 
