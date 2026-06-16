@@ -17,39 +17,49 @@ RecipeViewerEvents.removeEntriesCompletely("item", (allthemods) => {
   allthemods.remove("allthetweaks:greg_star")
   allthemods.remove("allthetweaks:greg_star_block")
 
-  for (let i = 1; i < 10; i++) {
-    allthemods.remove(`allthecompressed:greg_star_block_${i}x`)
+  if (Platform.isLoaded("allthecompressed")) {
+    for (let i = 1; i < 10; i++) {
+      allthemods.remove(`allthecompressed:greg_star_block_${i}x`)
+    }
   }
 
-  // allthemods.remove('relics:researching_table')
-  allthemods.remove("extradisks:infinite_chemical_storage_block")
-  allthemods.remove("extradisks:infinite_chemical_storage_disk")
-  allthemods.remove("extradisks:infinite_chemical_storage_part")
-  allthemods.remove("extradisks:infinite_fluid_storage_block")
-  allthemods.remove("extradisks:infinite_fluid_storage_disk")
-  allthemods.remove("extradisks:infinite_fluid_storage_part")
-  allthemods.remove("extradisks:infinite_item_storage_block")
-  allthemods.remove("extradisks:infinite_item_storage_disk")
-  allthemods.remove("extradisks:infinite_item_storage_part")
+  if (Platform.isLoaded("extradisks")) {
+    // allthemods.remove('relics:researching_table')
+    if (Platform.isLoaded("mekanism")) {
+      allthemods.remove("extradisks:infinite_chemical_storage_block")
+      allthemods.remove("extradisks:infinite_chemical_storage_disk")
+      allthemods.remove("extradisks:infinite_chemical_storage_part")
+    }
+    allthemods.remove("extradisks:infinite_fluid_storage_block")
+    allthemods.remove("extradisks:infinite_fluid_storage_disk")
+    allthemods.remove("extradisks:infinite_fluid_storage_part")
+    allthemods.remove("extradisks:infinite_item_storage_block")
+    allthemods.remove("extradisks:infinite_item_storage_disk")
+    allthemods.remove("extradisks:infinite_item_storage_part")
+  }
 
   let $DyeColor = Java.loadClass("net.minecraft.world.item.DyeColor")
   for (let color of $DyeColor.values()) {
     allthemods.remove(`/refinedstorage:${color}_.*/`)
   }
 
-  allthemods.remove("mekmm:scrap")
-  allthemods.remove("mekmm:scrap_box")
-  allthemods.remove("mekmm:empty_crystal")
-  allthemods.remove("mekmm:uu_matter")
-  allthemods.remove("mekmm:ambient_gas_collector")
-  allthemods.remove(/mekmm:.*replicat.*/)
-  allthemods.remove(/mekmm:.*recycl.*/)
-  allthemods.remove(/mekmm:.*planting.*/)
-  allthemods.remove("mekmm:cnc_lathe")
-  allthemods.remove(/mekmm:.*lathing.*/)
-  allthemods.remove(/mekmm:.*rolling_mill.*/)
+  if (Platform.isLoaded("mekmm")) {
+    allthemods.remove("mekmm:scrap")
+    allthemods.remove("mekmm:scrap_box")
+    allthemods.remove("mekmm:empty_crystal")
+    allthemods.remove("mekmm:uu_matter")
+    allthemods.remove("mekmm:ambient_gas_collector")
+    allthemods.remove(/mekmm:.*replicat.*/)
+    allthemods.remove(/mekmm:.*recycl.*/)
+    allthemods.remove(/mekmm:.*planting.*/)
+    allthemods.remove("mekmm:cnc_lathe")
+    allthemods.remove(/mekmm:.*lathing.*/)
+    allthemods.remove(/mekmm:.*rolling_mill.*/)
+  }
 
-  allthemods.remove("supplementaries:faucet")
+  if (Platform.isLoaded("supplementaries")) {
+    allthemods.remove("supplementaries:faucet")
+  }
 })
 
 // RecipeViewerEvents.removeEntriesCompletely('mekanism:chemical', allthemods => {
@@ -64,11 +74,13 @@ RecipeViewerEvents.removeRecipes((event) => {
 
 RecipeViewerEvents.removeEntries("item", (allthemods) => {
   for (let yeet of runicYEET) {
-    allthemods.remove(yeet)
+    if (Item.exists(yeet)) {
+      allthemods.remove(yeet)
+    }
   }
 
   // From JEI blacklist.json
-  allthemods.remove([
+  [
     "immersiveengineering:pickaxe_steel",
     "immersiveengineering:shovel_steel",
     "immersiveengineering:axe_steel",
@@ -138,7 +150,11 @@ RecipeViewerEvents.removeEntries("item", (allthemods) => {
     "mifa:speed_addon_6",
     "mifa:speed_addon_7",
     "mifa:speed_addon_8"
-  ])
+  ].forEach(item => {
+    if (Item.exists(item)) {
+      allthemods.remove(item)
+    }
+  })
 
   if (Platform.isLoaded("hyperbox")) {
     allthemods.remove("hyperbox:hyperbox")

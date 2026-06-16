@@ -57,6 +57,7 @@ if (Platform.isLoaded("ae2")) {
     function createCrystalAssemblerRecipe(output, inputs, id, fluid) {
       let recipe = {
         type: "extendedae:crystal_assembler",
+        energy: 10000,
         input_items: [],
         output: {
           id: output.item,
@@ -67,22 +68,20 @@ if (Platform.isLoaded("ae2")) {
       if (fluid) {
         recipe.input_fluid = {
           amount: fluid.amount || 1000,
-          ingredient: {
-            fluid: fluid.fluid
-          }
+          ingredient: fluid.fluid
         }
       }
 
       inputs.forEach((input) => {
         let ingredient = {
           amount: input.count || 1,
-          ingredient: {}
+          ingredient: "minecraft:air"
         }
 
         if (input.tag) {
-          ingredient.ingredient.tag = input.tag
+          ingredient.ingredient = "#"+input.tag
         } else {
-          ingredient.ingredient.item = input.item
+          ingredient.ingredient = input.item
         }
 
         recipe.input_items.push(ingredient)
@@ -199,10 +198,9 @@ if (Platform.isLoaded("ae2")) {
     allthemods
       .custom({
         type: "extendedae:circuit_cutter",
+        energy: 18000,
         input: {
-          ingredient: {
-            item: "minecraft:iron_block"
-          }
+          ingredient: "minecraft:iron_block"
         },
         output: {
           count: 1,
