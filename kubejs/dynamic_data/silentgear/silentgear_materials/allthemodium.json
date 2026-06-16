@@ -42,7 +42,7 @@
       "rarity": 90.0,
       "harvest_speed": 8.0,
       "harvest_tier": {
-        "incorrect_blocks_for_tool": "c:incorrect_for_allthemodium_tool",
+        "incorrect_blocks_for_tool": "allthemodium:incorrect_for_allthemodium_tool",
         "level_hint": "5",
         "name": "allthemodium"
       },
@@ -122,7 +122,7 @@
         "value": 10.0
       },
       "harvest_tier": {
-        "incorrect_blocks_for_tool": "c:incorrect_for_allthemodium_tool",
+        "incorrect_blocks_for_tool": "allthemodium:incorrect_for_allthemodium_tool",
         "level_hint": "5",
         "name": "allthemodium"
       },
